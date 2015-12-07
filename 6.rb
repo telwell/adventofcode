@@ -14,24 +14,28 @@ end
 def affect_lights(x1, y1, x2, y2, lights, command)
 	(y1..y2).each do |y|
 		(x1..x2).each do |x|
-			lights[x][y] = command.call(lights[x][y])
+			lights[y][x] = command.call(lights[y][x])
 		end
 	end
 end
 
 def count_on(lights)
+	# Part 1: lights.flatten.reject{ |x| x == 0 }.count
 	lights.flatten.inject(:+)
 end
 
 on = Proc.new do |el|
+	# Part 1: el = 1
 	el = el + 1
 end
 
 off = Proc.new do |el|
+	# Part 1: el = 0
 	el = (el == 0 ? 0 : el - 1)
 end
 
 toggle = Proc.new do |el|
+	# Part 1: el = (el == 0 ? 1 : 0)
 	el = el + 2
 end
 
